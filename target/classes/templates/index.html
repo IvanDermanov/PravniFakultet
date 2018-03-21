@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<title>Prijava i pregled ispita na Pravnom fakultetu u Novom
+	Sadu</title>
+<link th:href="@{/css/home.css}" type="text/css"
+	rel="stylesheet" href="../static/css/home.css"></link>
+</head>
+<body>
+	<h1>Dobrodošli</h1>
+
+	<p>
+		Student <a th:href="@{/student/hello}">klikni</a> za prijavu ispita.
+	</p>
+	<p>
+		Nastavnik <a th:href="@{/nastavnik/hello}">klikni</a> za pregled
+		prijavljenih ispita.
+	</p>
+</body>
+</html>

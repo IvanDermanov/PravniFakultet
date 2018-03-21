@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="UTF-8">
+<title>Pravni fakultet</title>
+
+<link th:href="@{/css/style_student.css}" type="text/css" rel="stylesheet"
+	href="../static/css/style_student.css"></link>
+
+</head>
+
+<body>
+	<form th:action="@{/student/loginStudent}" method="post">
+		<header>
+			Prijava ispita
+			<div th:if="${param.error}">Pogrešno uneti podaci.</div>
+			<div th:if="${param.logout}">Izlogovani ste uspešno</div>
+		</header>
+		<label>Broj indeksa <span>*</span></label>
+		<input type="text" name="username" placeholder="Broj indeksa"/>
+		<label>Šifra<span>*</span>
+		</label> <input type="password" name="password" placeholder="password"/>
+		<div class="help">Koristiti mala i velika slova</div>
+		<button>Ulaz</button>
+	</form>
+
+
+</body>
+
+</html>
