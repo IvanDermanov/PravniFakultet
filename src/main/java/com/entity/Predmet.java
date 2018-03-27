@@ -10,14 +10,40 @@ package com.entity;
 public class Predmet {
 	private String oznakaPredmenta;
 	private String nazivPredmeta;
-	private String jmbgNastavnika;
 	private int brojEPS;
 
-	public Predmet(String oznakaPredmenta, String nazivPredmeta, String jmbgNastavnika, int brojEPS) {
+	public Predmet(String oznakaPredmenta, String nazivPredmeta, int brojEPS) {
 		super();
 		this.oznakaPredmenta = oznakaPredmenta;
 		this.nazivPredmeta = nazivPredmeta;
-		this.jmbgNastavnika = jmbgNastavnika;
+		this.brojEPS = brojEPS;
+	}
+
+	public Predmet() {
+		// default constructor
+	}
+
+	public String getOznakaPredmenta() {
+		return oznakaPredmenta;
+	}
+
+	public void setOznakaPredmenta(String oznakaPredmenta) {
+		this.oznakaPredmenta = oznakaPredmenta;
+	}
+
+	public String getNazivPredmeta() {
+		return nazivPredmeta;
+	}
+
+	public void setNazivPredmeta(String nazivPredmeta) {
+		this.nazivPredmeta = nazivPredmeta;
+	}
+
+	public int getBrojEPS() {
+		return brojEPS;
+	}
+
+	public void setBrojEPS(int brojEPS) {
 		this.brojEPS = brojEPS;
 	}
 

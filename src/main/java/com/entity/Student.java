@@ -1,4 +1,5 @@
 package com.entity;
+
 /* Entitet student treba da minimalno sadrži 
  * ime, prezime, broj indeksa, JMBG i datum rođenja. 
  * Broj indeksa je tekstualno polje u formatu XXYYY/ZZZZ 
@@ -10,25 +11,35 @@ package com.entity;
 public class Student {
 	private String ime;
 	private String prezime;
-	private String brojIndeksa;
+	private String studijskiProgram;
+	private Integer brojUpisa;
+	private Integer godinaUpisaFakulteta;
 	private String jmbg;
 	private String datumRodjenja;
 	private String password;
+	private Integer semestar;
 
-
-	
-	public Student(String ime, String prezime, String brojIndeksa, String jmbg, String datumRodjenja, String password) {
+	public Student(String ime, String prezime, String studijskiProgram, Integer brojUpisa, Integer godinaUpisaFakulteta,
+			String jmbg, String datumRodjenja, String password, Integer semestar) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
-		this.brojIndeksa = brojIndeksa;
+		this.studijskiProgram = studijskiProgram;
+		this.brojUpisa = brojUpisa;
+		this.godinaUpisaFakulteta = godinaUpisaFakulteta;
 		this.jmbg = jmbg;
 		this.datumRodjenja = datumRodjenja;
 		this.password = password;
+		this.semestar = semestar;
 	}
 
 	public Student() {
-		//default constructor
+		// default constructor
+	}
+
+	public String getStudentId(Student student) {
+		String id = student.getBrojUpisa().toString() + "/" + student.getGodinaUpisaFakulteta().toString();
+		return id;
 	}
 
 	public String getIme() {
@@ -47,12 +58,28 @@ public class Student {
 		this.prezime = prezime;
 	}
 
-	public String getBrojIndeksa() {
-		return brojIndeksa;
+	public String getStudijskiProgram() {
+		return studijskiProgram;
 	}
 
-	public void setBrojIndeksa(String brojIndeksa) {
-		this.brojIndeksa = brojIndeksa;
+	public void setStudijskiProgram(String studijskiProgram) {
+		this.studijskiProgram = studijskiProgram;
+	}
+
+	public Integer getBrojUpisa() {
+		return brojUpisa;
+	}
+
+	public void setBrojUpisa(Integer brojUpisa) {
+		this.brojUpisa = brojUpisa;
+	}
+
+	public Integer getGodinaUpisaFakulteta() {
+		return godinaUpisaFakulteta;
+	}
+
+	public void setGodinaUpisaFakulteta(Integer godinaUpisaFakulteta) {
+		this.godinaUpisaFakulteta = godinaUpisaFakulteta;
 	}
 
 	public String getJmbg() {
@@ -77,6 +104,14 @@ public class Student {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Integer getSemestar() {
+		return semestar;
+	}
+
+	public void setSemestar(Integer semestar) {
+		this.semestar = semestar;
 	}
 
 }
