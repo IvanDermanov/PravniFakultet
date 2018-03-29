@@ -1,12 +1,17 @@
 package com.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /*
  * Entitet nastavnik treba da sadrži
  * ime, prezime, JMBG i datum rođenja.
  */
+@Entity
 public class Nastavnik {
 	private String ime;
 	private String prezime;
+	@Id
 	private String jmbg;
 	private String datumRodjenja;
 	private String password;

@@ -1,18 +1,22 @@
 package com.entity;
 
-/* Entitet Termin je unet radi konzistencije
- * 
- */
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+@Entity
 public class Termin {
-	int id;
-	String Datum;
-	String Vreme;
+	
+	@Id
+	private int id;
+	private String Datum;
+	private String Vreme;
 
 	public Termin(int id, String datum, String vreme) {
 		super();
 		this.id = id;
-		Datum = datum;
-		Vreme = vreme;
+		this.Datum = datum;
+		this.Vreme = vreme;
 	}
 
 	public int getId() {
@@ -32,7 +36,7 @@ public class Termin {
 	}
 
 	public void setDatum(String datum) {
-		Datum = datum;
+		this.Datum = datum;
 	}
 
 	public String getVreme() {
@@ -40,6 +44,6 @@ public class Termin {
 	}
 
 	public void setVreme(String vreme) {
-		Vreme = vreme;
+		this.Vreme = vreme;
 	}
 }

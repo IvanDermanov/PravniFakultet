@@ -1,37 +1,41 @@
 package com.service;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.Predmet;
-import com.model.PredmetDao;
+import com.interfejs.PredmetRepository;
 
 @Service
 public class PredmetService {
 
 	@Autowired
-	private PredmetDao predmetDao;
+	private PredmetRepository predmetRepository;
 
-	public Collection<Predmet> getSviPredmeti() {
-		return this.predmetDao.getSviPredmeti();
+	public List<Predmet> getSviPredmeti() {
+    	List<Predmet> predmet=new ArrayList<>();
+    	predmetRepository.findAll().forEach(predmet::add);
+        return predmet;
 	}
 
-	public Predmet getPredmetById(String id) {
-		return this.predmetDao.getPredmetById(id);
+	public Optional<Predmet> getPredmetById(String id) {
+		return predmetRepository.findById(id);
 	}
 
 	public void removePredmetById(String id) {
-		this.predmetDao.removePredmetById(id);
+		predmetRepository.deleteById(id);
 	}
 
 	public void updatePredmet(Predmet predmet) {
-		this.predmetDao.updatePredmet(predmet);
+		predmetRepository.save(predmet);
 	}
 
 	public void insertPredmet(Predmet predmet) {
-		this.predmetDao.insertPredmetToDb(predmet);
+		predmetRepository.save(predmet);
 	}
 
 }

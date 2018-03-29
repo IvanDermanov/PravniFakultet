@@ -1,5 +1,8 @@
 package com.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /* Entitet student treba da minimalno sadrži 
  * ime, prezime, broj indeksa, JMBG i datum rođenja. 
  * Broj indeksa je tekstualno polje u formatu XXYYY/ZZZZ 
@@ -8,7 +11,10 @@ package com.entity;
  * 	ZZZZ je godina kada je student upisao fakultet. 
  * Primer broja indeksa je NB125/2018.
  */
+@Entity
 public class Student {
+	@Id
+	private String id;
 	private String ime;
 	private String prezime;
 	private String studijskiProgram;
@@ -19,9 +25,10 @@ public class Student {
 	private String password;
 	private Integer semestar;
 
-	public Student(String ime, String prezime, String studijskiProgram, Integer brojUpisa, Integer godinaUpisaFakulteta,
-			String jmbg, String datumRodjenja, String password, Integer semestar) {
+	public Student(String id, String ime, String prezime, String studijskiProgram, Integer brojUpisa,
+			Integer godinaUpisaFakulteta, String jmbg, String datumRodjenja, String password, Integer semestar) {
 		super();
+		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.studijskiProgram = studijskiProgram;
@@ -40,6 +47,14 @@ public class Student {
 	public String getStudentId(Student student) {
 		String id = student.getBrojUpisa().toString() + "/" + student.getGodinaUpisaFakulteta().toString();
 		return id;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getIme() {

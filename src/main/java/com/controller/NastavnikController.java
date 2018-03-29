@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,7 +29,7 @@ public class NastavnikController {
 
 	// READ By http://localhost:8080/student/nastavnik/?id=0121972761028
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Nastavnik getNastavnikById(@RequestParam(value = "id") String id) {
+	public Optional<Nastavnik> getNastavnikById(@RequestParam(value = "id") String id) {
 		return nastavnikService.getNastavnikById(id);
 	}
 

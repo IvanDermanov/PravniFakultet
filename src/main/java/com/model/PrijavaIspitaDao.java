@@ -20,9 +20,9 @@ public class PrijavaIspitaDao {
 		prijaveIspita = new HashMap<Integer, PrijavaIspita>() {
 
 			{
-				put(1, new PrijavaIspita(1,new Student("Petar", "Petrovic","НБ",125,2018,"1306989361035","13.06.1989","",1),new Predmet("08.0001А", "Krivično pravo",90),new Termin(1,"14.02.2018", "14:00"),new Nastavnik("Petar", "Petrovic","0121950761035","01.21.1969","123213"),0));
-				put(2, new PrijavaIspita(2,new Student("Petar", "Petrovic","НБ",125,2018,"1306989361035","13.06.1989","",1),new Predmet("08.0001А", "Krivično pravo",90),new Termin(2,"14.02.2018", "14:00"),new Nastavnik("Petar", "Petrovic","0121950761035","01.21.1969","123213"),0));
-				put(3, new PrijavaIspita(3,new Student("Petar", "Petrovic","НБ",125,2018,"1306989361035","13.06.1989","",1),new Predmet("08.0001А", "Krivično pravo",90),new Termin(3,"14.02.2018", "14:00"),new Nastavnik("Petar", "Petrovic","0121950761035","01.21.1969","123213"),0));
+				put(1, new PrijavaIspita(1,new Student("125/2018","Petar", "Petrovic","НБ",125,2018,"1306989361035","13.06.1989","",1),new Predmet("08.0001А", "Krivično pravo",90),new Termin(1,"14.02.2018", "14:00"),new Nastavnik("Petar", "Petrovic","0121950761035","01.21.1969","123213"),0));
+				put(2, new PrijavaIspita(2,new Student("126/2018","Petar", "Petrovic","НБ",126,2018,"1306989361035","13.06.1989","",1),new Predmet("08.0001А", "Krivično pravo",90),new Termin(2,"14.02.2018", "14:00"),new Nastavnik("Petar", "Petrovic","0121950761035","01.21.1969","123213"),0));
+				put(3, new PrijavaIspita(3,new Student("127/2018","Petar", "Petrovic","НБ",127,2018,"1306989361035","13.06.1989","",1),new Predmet("08.0001А", "Krivično pravo",90),new Termin(3,"14.02.2018", "14:00"),new Nastavnik("Petar", "Petrovic","0121950761035","01.21.1969","123213"),0));
 				
 			}
 		};

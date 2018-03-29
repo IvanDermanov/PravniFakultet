@@ -2,12 +2,17 @@ package com.entity;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /*
  * Entitet ispit treba da sadrži predmet 
  * termine u kojima se može polagati taj predmet
  */
+@Entity
 public class Ispit {
-	String id;
+	@Id
+	private String id;
 	private Predmet predmet;
 	private List Termin;
 

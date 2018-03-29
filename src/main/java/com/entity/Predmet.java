@@ -1,5 +1,8 @@
 package com.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /*
  * Entitet predmet treba da sadrži oznaku predmeta,
  * naziv predmeta i broj ESPB bodova.
@@ -7,7 +10,9 @@ package com.entity;
  * Radi pojednostavljenja uvodim pretpostavku
  * da se jedan ispit moze polagati kod jednog nastavnika
  */
+@Entity
 public class Predmet {
+	@Id
 	private String oznakaPredmenta;
 	private String nazivPredmeta;
 	private int brojEPS;

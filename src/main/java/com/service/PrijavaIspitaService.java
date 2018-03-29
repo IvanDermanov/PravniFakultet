@@ -1,36 +1,40 @@
 package com.service;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.PrijavaIspita;
-import com.model.PrijavaIspitaDao;
+import com.interfejs.PrijavaIspitaRepository;
 
 @Service
 public class PrijavaIspitaService {
 	@Autowired
-    private PrijavaIspitaDao prijavaIspitaDao;
+    private PrijavaIspitaRepository prijavaIspitaRepository;
 
-    public Collection<PrijavaIspita> getSvePrijaveIspita(){
-        return this.prijavaIspitaDao.getSvePrijaveIspita();
+    public List<PrijavaIspita> getSvePrijaveIspita(){
+    	List<PrijavaIspita> prijavaIspita=new ArrayList<>();
+        prijavaIspitaRepository.findAll().forEach(prijavaIspita::add);
+        return prijavaIspita;
     }
     
-	public PrijavaIspita getPrijavaIspitaById(int id){
-        return this.prijavaIspitaDao.getPrijavaIspitaById(id);
+	public Optional<PrijavaIspita> getPrijavaIspitaById(int id){
+        return  prijavaIspitaRepository.findById(id);
     }
 	
     public void removePrijavaIspitaById(int id) {
-        this.prijavaIspitaDao.removePrijavaIspitaById(id);
+    	prijavaIspitaRepository.deleteById(id);
     }
     
     public void updatePrijavaIspita(PrijavaIspita prijavaIspita){
-        this.prijavaIspitaDao.updatePrijavaIspita(prijavaIspita);
+    	prijavaIspitaRepository.save(prijavaIspita);
     }
     
     public void insertPrijavaIspita(PrijavaIspita prijavaIspita) {
-        this.prijavaIspitaDao.insertPrijavaIspitaToDb(prijavaIspita);
+    	prijavaIspitaRepository.save(prijavaIspita);
     }
 
 }

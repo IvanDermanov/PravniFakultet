@@ -1,37 +1,42 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.model.StudentDao;
 import com.entity.Student;
+import com.interfejs.StudentRepository;
 
 @Service
 public class StudentService {
 
     @Autowired
-    private StudentDao studentDao;
+    private StudentRepository studentRepository;
 
     public Collection<Student> getAllStudents(){
-        return this.studentDao.getSviStudenti();
+    	List<Student> student=new ArrayList<>();
+    	studentRepository.findAll().forEach(student::add);
+        return student;
     }
     
-	public Student getStudentById(String id){
-        return this.studentDao.getStudentById(id);
+	public Optional<Student> getStudentById(String id){
+		return studentRepository.findById(id);
     }
 	
     public void removeStudentById(String id) {
-        this.studentDao.removeStudentById(id);
+    	studentRepository.deleteById(id);
     }
     
     public void updateStudent(Student student){
-        this.studentDao.updateStudent(student);
+    	studentRepository.save(student);
     }
     
     public void insertStudent(Student student) {
-        this.studentDao.insertStudentToDb(student);
+    	studentRepository.save(student);
     }
 
 

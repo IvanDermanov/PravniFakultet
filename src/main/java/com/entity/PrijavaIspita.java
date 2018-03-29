@@ -1,5 +1,8 @@
 package com.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /*
  * Entitet PrijavaIspita treba da sadrži 
  * studenta koji polaze
@@ -8,7 +11,9 @@ package com.entity;
  * nastavnika kod koga polaze
  * ocenu koju je dobio
  */
+@Entity
 public class PrijavaIspita {
+	@Id
 	private int id;
 	private Student student;
 	private Predmet predmet;
