@@ -1,5 +1,20 @@
 package com.entity;
 
+import java.io.Serializable;
+
+//CREATE TABLE prijava_ispita(
+//	    id BIGINT NOT NULL,
+//		student VARCHAR(10),
+//	    predmet VARCHAR(10),
+//	    termin BIGINT,
+//		nastavnik VARCHAR(13),
+//		ocena INT,
+//		PRIMARY KEY (id),
+//		FOREIGN KEY (student) REFERENCES student(id),
+//		FOREIGN KEY (predmet) REFERENCES predmet(oznaka),
+//		FOREIGN KEY (nastavnik) REFERENCES nastavnik(jmbg),
+//		FOREIGN KEY (termin) REFERENCES termin(id)
+//	);
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,18 +27,25 @@ import javax.persistence.Id;
  * ocenu koju je dobio
  */
 @Entity
-public class PrijavaIspita {
+public class PrijavaIspita implements Serializable{
 	@Id
 	private int id;
-	private Student student;
-	private Predmet predmet;
+	private String student;
+	private String predmet;
 	// termin polaganja koji je student odabrao
-	private Termin terminPolaganja;
-	private Nastavnik nastavnik;
+	private int terminPolaganja;
+	private String nastavnik;
 	private int ocena;
 
-	public PrijavaIspita(int id, Student student, Predmet predmet, Termin terminPolaganja, Nastavnik nastavnik,
-			int ocena) {
+	
+	public PrijavaIspita() {
+		// default constructor
+	}
+
+
+	
+
+	public PrijavaIspita(int id, String student, String predmet, int terminPolaganja, String nastavnik, int ocena) {
 		super();
 		this.id = id;
 		this.student = student;
@@ -33,56 +55,94 @@ public class PrijavaIspita {
 		this.ocena = ocena;
 	}
 
+
+
+
 	public int getId() {
 		return id;
 	}
+
+
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public PrijavaIspita() {
-		// default constructor
-	}
 
-	public Student getStudent() {
+
+
+	public String getStudent() {
 		return student;
 	}
 
-	public void setStudent(Student student) {
+
+
+
+	public void setStudent(String student) {
 		this.student = student;
 	}
 
-	public Predmet getPredmet() {
+
+
+
+	public String getPredmet() {
 		return predmet;
 	}
 
-	public void setPredmet(Predmet predmet) {
+
+
+
+	public void setPredmet(String predmet) {
 		this.predmet = predmet;
 	}
 
-	public Termin getTerminPolaganja() {
+
+
+
+	public int getTerminPolaganja() {
 		return terminPolaganja;
 	}
 
-	public void setTerminPolaganja(Termin terminPolaganja) {
+
+
+
+	public void setTerminPolaganja(int terminPolaganja) {
 		this.terminPolaganja = terminPolaganja;
 	}
 
-	public Nastavnik getNastavnik() {
+
+
+
+	public String getNastavnik() {
 		return nastavnik;
 	}
 
-	public void setNastavnik(Nastavnik nastavnik) {
+
+
+
+	public void setNastavnik(String nastavnik) {
 		this.nastavnik = nastavnik;
 	}
+
+
+
 
 	public int getOcena() {
 		return ocena;
 	}
 
+
+
+
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
 	}
+
+
+
+
+	
+	
 
 }

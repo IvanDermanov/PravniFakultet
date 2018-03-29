@@ -1,5 +1,12 @@
 package com.entity;
+import java.io.Serializable;
 
+//CREATE TABLE predmet(
+//	    oznaka VARCHAR(10) NOT NULL,
+//	    naziv VARCHAR(20),
+//	    eps INT,
+//		PRIMARY KEY (oznaka)
+//	);
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,7 +18,7 @@ import javax.persistence.Id;
  * da se jedan ispit moze polagati kod jednog nastavnika
  */
 @Entity
-public class Predmet {
+public class Predmet implements Serializable{
 	@Id
 	private String oznakaPredmenta;
 	private String nazivPredmeta;

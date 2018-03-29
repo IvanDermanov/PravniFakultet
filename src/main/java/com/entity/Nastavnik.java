@@ -1,5 +1,14 @@
 package com.entity;
+import java.io.Serializable;
 
+//CREATE TABLE nastavnik(
+//	    jmbg VARCHAR(13) NOT NULL,
+//	    ime VARCHAR(20),
+//		prezime VARCHAR(20),
+//	    datum_rodjenja VARCHAR(10),
+//		password VARCHAR (20),
+//		PRIMARY KEY (jmbg)
+//	);
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,7 +17,7 @@ import javax.persistence.Id;
  * ime, prezime, JMBG i datum rođenja.
  */
 @Entity
-public class Nastavnik {
+public class Nastavnik implements Serializable{
 	private String ime;
 	private String prezime;
 	@Id

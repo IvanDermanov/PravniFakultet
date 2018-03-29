@@ -1,5 +1,21 @@
 package com.entity;
 
+import java.io.Serializable;
+
+//CREATE TABLE student(
+//	    id VARCHAR(10) NOT NULL,
+//	    ime VARCHAR(20),
+//	    prezime VARCHAR(20),
+//		program VARCHAR(3),
+//		rb_upisa INT,
+//		god_upisa INT,
+//		jmbg VARCHAR(13),
+//		datum_rodjenja VARCHAR (10),
+//		password VARCHAR (20),
+//		semestar INT,
+//		PRIMARY KEY (id)
+//	);
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,7 +28,7 @@ import javax.persistence.Id;
  * Primer broja indeksa je NB125/2018.
  */
 @Entity
-public class Student {
+public class Student implements Serializable{
 	@Id
 	private String id;
 	private String ime;
@@ -23,7 +39,7 @@ public class Student {
 	private String jmbg;
 	private String datumRodjenja;
 	private String password;
-	private Integer semestar;
+	private int semestar;
 
 	public Student(String id, String ime, String prezime, String studijskiProgram, Integer brojUpisa,
 			Integer godinaUpisaFakulteta, String jmbg, String datumRodjenja, String password, Integer semestar) {

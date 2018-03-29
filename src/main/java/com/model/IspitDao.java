@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.entity.Ispit;
 import com.entity.Predmet;
 import com.entity.PrijavaIspita;
-import com.entity.Termin;
+import com.entity.Termini;
 
 
 
@@ -22,34 +22,34 @@ public class IspitDao {
 	static {
 		ispiti = new HashMap<String, Ispit>() {
 			{
-				put("08.0001А", new Ispit(new Predmet("08.0001А", "Krivično pravo", 90), new ArrayList<Termin>() {
-					{
-						add(new Termin(1,"12.02.2018", "12:20"));
-						add(new Termin(2,"13.02.2018", "13:00"));
-						add(new Termin(3,"14.02.2018", "14:00"));
-					}
-				}));
-				put("02.0001А", new Ispit(new Predmet("02.0001А", "Rimsko pravo", 190), new ArrayList<Termin>() {
-					{
-						add(new Termin(1,"12.02.2018", "12:20"));
-						add(new Termin(2,"13.02.2018", "13:00"));
-						add(new Termin(3,"14.02.2018", "14:00"));
-					}
-				}));
-				put("03.0001А", new Ispit(new Predmet("03.0001А", "Građansko pravo", 290), new ArrayList<Termin>() {
-					{
-						add(new Termin(1,"12.02.2018", "12:20"));
-						add(new Termin(2,"13.02.2018", "13:00"));
-						add(new Termin(3,"14.02.2018", "14:00"));
-					}
-				}));
-				put("04.0001B", new Ispit(new Predmet("04.0001B", "Ustavno pravo", 390), new ArrayList<Termin>() {
-					{
-						add(new Termin(1,"12.02.2018", "12:20"));
-						add(new Termin(2,"13.02.2018", "13:00"));
-						add(new Termin(3,"14.02.2018", "14:00"));
-					}
-				}));
+//				put("08.0001А", new Ispit(new Predmet("08.0001А", "Krivično pravo", 90), new ArrayList<Termini>() {
+//					{
+//						add(new Termini(1,"12.02.2018", "12:20"));
+//						add(new Termini(2,"13.02.2018", "13:00"));
+//						add(new Termini(3,"14.02.2018", "14:00"));
+//					}
+//				}));
+//				put("02.0001А", new Ispit(new Predmet("02.0001А", "Rimsko pravo", 190), new ArrayList<Termini>() {
+//					{
+//						add(new Termini(1,"12.02.2018", "12:20"));
+//						add(new Termini(2,"13.02.2018", "13:00"));
+//						add(new Termini(3,"14.02.2018", "14:00"));
+//					}
+//				}));
+//				put("03.0001А", new Ispit(new Predmet("03.0001А", "Građansko pravo", 290), new ArrayList<Termini>() {
+//					{
+//						add(new Termini(1,"12.02.2018", "12:20"));
+//						add(new Termini(2,"13.02.2018", "13:00"));
+//						add(new Termini(3,"14.02.2018", "14:00"));
+//					}
+//				}));
+//				put("04.0001B", new Ispit(new Predmet("04.0001B", "Ustavno pravo", 390), new ArrayList<Termini>() {
+//					{
+//						add(new Termini(1,"12.02.2018", "12:20"));
+//						add(new Termini(2,"13.02.2018", "13:00"));
+//						add(new Termini(3,"14.02.2018", "14:00"));
+//					}
+//				}));
 			}
 		};
 	}
@@ -67,14 +67,14 @@ public class IspitDao {
 	
 	
 	public void updateIspit(Ispit ispit) {
-		String id=ispit.getId();
+		int id=ispit.getId();
 		Ispit i=ispiti.get(id);
 		i.setPredmet(ispit.getPredmet());
 		i.setTermin(ispit.getTermin());
-		ispiti.put(id, ispit);
+		//ispiti.put(id, ispit);
 	}
 
 	public void insertIspitToDb(Ispit ispit) {
-		this.ispiti.put(ispit.getId(), ispit);
+		//this.ispiti.put(ispit.getId(), ispit);
 	}
 }

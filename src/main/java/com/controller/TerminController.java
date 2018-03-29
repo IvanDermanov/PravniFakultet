@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.entity.Termin;
+import com.entity.Termini;
 import com.service.TerminService;
 
 @RestController
@@ -22,13 +22,13 @@ public class TerminController {
 
 	// READ
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Termin> getSviTermini() {
+	public Collection<Termini> getSviTermini() {
 		return terminService.getSviTermini();
 	}
 
 	// READ By http://localhost:8080/student/termin/?id=1
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Optional<Termin> getTerminById(@RequestParam(value = "id") int id) {
+	public Optional<Termini> getTerminById(@RequestParam(value = "id") int id) {
 		return terminService.getTerminById(id);
 	}
 
@@ -40,13 +40,13 @@ public class TerminController {
 
 	// UPDATE
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteTerminById(@RequestBody Termin termin) {
+	public void deleteTerminById(@RequestBody Termini termin) {
 		terminService.updateTermin(termin);
 	}
 
 	// ADD NEW
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertTermin(@RequestBody Termin termin) {
+	public void insertTermin(@RequestBody Termini termin) {
 		terminService.insertTermin(termin);
 	}
 }
