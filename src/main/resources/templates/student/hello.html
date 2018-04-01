@@ -1,13 +1,187 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Prijava ispita</title>
-    </head>
-    <body>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="get">
-            <input type="submit" value="Sign Out"/>
-        </form>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Prijava ispita</title>
+</head>
+<body>
+	<h1 th:inline="text">Prijava ispita za studenta:</h1>
+	<h2 id="student"></h2>
+	<br>
+	<p>
+	<form th:action="@{/logout}" method="get">
+		<input type="submit" value="Odjava" />
+	</form>
+	</p>
+	<p style="display: inline-block;">
+	<p>
+	<div id="profesor"></div>
+	</p>
+	<p id="predmeti"></p>
+	<p id="termini"></p>
+	<p ><div id="myDIVButton" value="" style="display: none;"><button type="button" onclick="Prijava()">Prijavi ispit</button></div></p>
+	</p>
+	<script>
+	//SELEKTOR ISPITA
+	var obj, dbParam, xmlhttp, myObj, x, txt = "";
+
+	dbParam = JSON.stringify(obj);
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			myObj = JSON.parse(this.responseText);
+			txt += "<select id=\"predmet_select\" onchange=\"change_predmet_select(this.value)\">"
+					+ "<option value=\"\">Izaberi ispit:</option>"
+			for (x in myObj) {
+				txt += "<option value="+ myObj[x].oznakaPredmeta +">"
+						+ myObj[x].oznakaPredmeta + " | "
+						+ myObj[x].nazivPredmeta + "</options>";
+			}
+			txt += "</select>"
+			document.getElementById("predmeti").innerHTML = txt;
+
+		}
+
+	};
+	xmlhttp.open("GET", "http://localhost:8080/student/predmet", true);
+	xmlhttp.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+	xmlhttp.send("x=" + dbParam);
+	
+	//PRIKAZ STUDENTA
+	var obj1, dbParam1, xmlhttp1, myObj1, x1, txt1 = "";
+
+	dbParam1 = JSON.stringify(obj1);
+	xmlhttp1 = new XMLHttpRequest();
+	xmlhttp1.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			myObj1 = JSON.parse(this.responseText);
+			txt1 = myObj1.ime + " " + myObj1.prezime + " "
+					+ myObj1.studijskiProgram + myObj1.id;
+			document.getElementById("student").innerHTML = txt1;
+
+		}
+
+	};
+	xmlhttp1
+			.open(
+					"GET",
+					"http://localhost:8080/student/student/?id=[[${#httpServletRequest.remoteUser}]]",
+					true);
+	xmlhttp1.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+	xmlhttp1.send("x=" + dbParam1);
+	
+	//SELEKTOR TERMINA
+	function change_predmet_select(sel) {		
+		var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
+		dbParam2 = JSON.stringify(obj2);
+		xmlhttp2 = new XMLHttpRequest();
+
+		xmlhttp2.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("termini").innerHTML = "";
+				document.getElementById("profesor").innerHTML = "";
+				sakrijButton();
+				myObj2 = JSON.parse(this.responseText);
+				if (myObj2.length > 0) {
+					txt2 += "<select id=\"termin_select\" onchange=\"change_termin_select(this.value)\">"
+							+ "<option value=\"\">Izaberi termin polaganja:</option>"
+					for (x2 in myObj2) {
+						txt2 += "<option value="
+								+ "\""
+								+ myObj2[x2].nastavnik
+								+ "|"
+								+ myObj2[x2].datum
+								+ "|"
+								+ myObj2[x2].vreme
+								+ "|"
+								+ document.getElementById("predmet_select").value
+								+ "|[[${#httpServletRequest.remoteUser}]]"
+								+ "\">" + myObj2[x2].datum + " u "
+								+ myObj2[x2].vreme + " h" + "</options>";
+					}
+					txt2 += "</select>"
+					document.getElementById("termini").innerHTML = txt2;
+
+				}
+			}
+		};
+		xmlhttp2
+				.open("GET",
+						"http://localhost:8080/student/ispit/?sifraPredmeta="
+								+ sel, true);
+		xmlhttp2.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xmlhttp2.send("x=" + dbParam2);
+	};
+	//PRIPREMA FORME ZA PRIJAVU ISPITA
+
+	function change_termin_select(sel) {
+		var prijava_ispita = sel.split('|');
+		get_profesor(prijava_ispita[0]);
+		var prijava = { 
+				jmbgProfesora: prijava_ispita[0],
+	            danPolaganja: prijava_ispita[1], 
+	            vremePolaganja: prijava_ispita[2],
+	            sifraPredmeta: prijava_ispita[3],
+	            student: prijava_ispita[4]
+	        }; 
+		var jsonText = JSON.stringify(prijava);
+		document.getElementById("myDIVButton").value = jsonText;
+		pokaziButton();
+	}
+
+	function get_profesor(jmbg) {
+		var obj3, dbParam3, xmlhttp3, myObj3, x3, txt3 = "";
+
+		xmlhttp3 = new XMLHttpRequest();
+		xmlhttp3.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("profesor").innerHTML = "";
+				myObj3 = JSON.parse(this.responseText);
+				txt3 = "Ispit kod profesora "+myObj3.ime + " " + myObj3.prezime;
+				document.getElementById("profesor").innerHTML = txt3;
+
+			}
+
+		};
+		xmlhttp3.open("GET", "http://localhost:8080/student/nastavnik/?id="
+				+ jmbg, true);
+		xmlhttp3.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xmlhttp3.send("x=" + dbParam3);
+
+	};
+	function Prijava() {
+		var obj3, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
+
+		dbParam3 = document.getElementById("myDIVButton").value;
+		xmlhttp3 = new XMLHttpRequest();
+		xmlhttp3.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				alert("Uspešno ste prijavili ispit");
+				sakrijButton();
+			}
+
+		};
+		xmlhttp3.open("POST", "http://localhost:8080/student/prijava_ispita", true);
+		xmlhttp3.setRequestHeader("Content-type","application/json");
+		xmlhttp3.send(dbParam3);
+
+	};
+	
+	function pokaziButton() {
+	    var x = document.getElementById("myDIVButton");
+	    x.style.display = "block";
+	}
+	function sakrijButton() {
+	    var x = document.getElementById("myDIVButton");
+	    x.style.display = "none";
+	}
+		
+	</script>
+
+</body>
 </html>

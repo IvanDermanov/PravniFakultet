@@ -3,18 +3,19 @@ package com.entity;
 import java.io.Serializable;
 
 //CREATE TABLE student(
-//	    id VARCHAR(10) NOT NULL,
-//	    ime VARCHAR(20),
-//	    prezime VARCHAR(20),
-//		program VARCHAR(3),
-//		rb_upisa INT,
-//		god_upisa INT,
+//		 id VARCHAR(10) NOT NULL,
+//		ime VARCHAR(20),
+//		prezime VARCHAR(20),
+//		studijski_programVARCHAR(3),
+//		broj_upisa INT,
+//		godina_upisa_fakulteta INT,
 //		jmbg VARCHAR(13),
 //		datum_rodjenja VARCHAR (10),
 //		password VARCHAR (20),
 //		semestar INT,
 //		PRIMARY KEY (id)
-//	);
+//		);
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

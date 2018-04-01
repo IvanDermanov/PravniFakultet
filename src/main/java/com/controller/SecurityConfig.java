@@ -54,7 +54,7 @@ public class SecurityConfig {
                     .and()
                 .formLogin()
                     .loginPage("/nastavnik/loginNastavnik")
-                    .defaultSuccessUrl("/nastavnik/hello")
+                    .defaultSuccessUrl("/nastavnik/hello.html")
                     .permitAll()
                     .and()
                 .logout()
@@ -86,8 +86,40 @@ public class SecurityConfig {
 		 manager
 			.createUser(
 					users
-						.username("s")
-						.password("s")
+						.username("261/2016")
+						.password("123")
+						.roles("STUDENT")
+						.build()
+					);
+		 manager
+			.createUser(
+					users
+						.username("12/2017")
+						.password("123")
+						.roles("STUDENT")
+						.build()
+					);
+		 manager
+			.createUser(
+					users
+						.username("127/2015")
+						.password("123")
+						.roles("STUDENT")
+						.build()
+					);
+		 manager
+			.createUser(
+					users
+						.username("126/2015")
+						.password("123")
+						.roles("STUDENT")
+						.build()
+					);
+		 manager
+			.createUser(
+					users
+						.username("126/2014")
+						.password("123")
 						.roles("STUDENT")
 						.build()
 					);

@@ -2,12 +2,16 @@ package com.entity;
 import java.io.Serializable;
 
 //CREATE TABLE predmet(
-//	    oznaka VARCHAR(10) NOT NULL,
-//	    naziv VARCHAR(20),
-//	    eps INT,
-//		PRIMARY KEY (oznaka)
-//	);
+//		 oznaka_predmeta  VARCHAR(10) NOT NULL,
+//		naziv_predmeta  VARCHAR(20),
+//		eps INT,
+//			PRIMARY KEY (oznaka_predmeta)
+//		);
+
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /*
@@ -19,44 +23,58 @@ import javax.persistence.Id;
  */
 @Entity
 public class Predmet implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	private String oznakaPredmenta;
+	private String oznakaPredmeta;
 	private String nazivPredmeta;
-	private int brojEPS;
+	private int eps;
 
-	public Predmet(String oznakaPredmenta, String nazivPredmeta, int brojEPS) {
-		super();
-		this.oznakaPredmenta = oznakaPredmenta;
-		this.nazivPredmeta = nazivPredmeta;
-		this.brojEPS = brojEPS;
-	}
-
+	
 	public Predmet() {
 		// default constructor
 	}
 
-	public String getOznakaPredmenta() {
-		return oznakaPredmenta;
+
+	public Predmet( String oznakaPredmeta, String nazivPredmeta, int eps) {
+		super();
+		this.oznakaPredmeta = oznakaPredmeta;
+		this.nazivPredmeta = nazivPredmeta;
+		this.eps = eps;
 	}
 
-	public void setOznakaPredmenta(String oznakaPredmenta) {
-		this.oznakaPredmenta = oznakaPredmenta;
+
+
+
+	public String getOznakaPredmeta() {
+		return oznakaPredmeta;
 	}
+
+
+	public void setOznakaPredmeta(String oznakaPredmeta) {
+		this.oznakaPredmeta = oznakaPredmeta;
+	}
+
 
 	public String getNazivPredmeta() {
 		return nazivPredmeta;
 	}
 
+
 	public void setNazivPredmeta(String nazivPredmeta) {
 		this.nazivPredmeta = nazivPredmeta;
 	}
 
-	public int getBrojEPS() {
-		return brojEPS;
+
+	public int getEps() {
+		return eps;
 	}
 
-	public void setBrojEPS(int brojEPS) {
-		this.brojEPS = brojEPS;
+
+	public void setEps(int Eps) {
+		this.eps = Eps;
 	}
 
 }

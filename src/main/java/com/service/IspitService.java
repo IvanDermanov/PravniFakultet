@@ -1,17 +1,12 @@
 package com.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.Ispit;
-import com.entity.Student;
 import com.interfejs.IspitRepository;
-import com.model.IspitDao;
 
 @Service
 public class IspitService {
@@ -24,10 +19,6 @@ public class IspitService {
 		return ispit;
 	}
 
-	public Optional<Ispit> getIspitBySifraIspita(String id) {
-		return ispitRepository.findById(id);
-
-	}
 
 	public void removeIspitBySifraIspita(String id) {
 		ispitRepository.deleteById(id);
@@ -40,5 +31,16 @@ public class IspitService {
 	public void insertIspit(Ispit ispit) {
 		ispitRepository.save(ispit);
 	}
+
+
+	public List<Ispit> getTerminiPoSifriPredmeta(String sifraPredmeta) {
+		List<Ispit> termini= new ArrayList<>();
+		for(Ispit isp: ispitRepository.findByPredmet(sifraPredmeta)){
+			termini.add(isp);
+		}
+		return termini;
+	}
+
+
 
 }

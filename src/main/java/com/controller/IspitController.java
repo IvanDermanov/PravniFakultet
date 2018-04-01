@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Ispit;
+import com.entity.Nastavnik;
 import com.service.IspitService;
 
 
@@ -27,11 +30,14 @@ public class IspitController {
 		return ispitService.getSviIspiti();
 	}
 
-	// READ By http://localhost:8080/student/predmet/?id=08.0001А
+	// READ By http://localhost:8080/student/ispit/?predmet=08.0001А
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Optional<Ispit> getIspitBySifraIspita(@RequestParam(value = "id") String id) {
-		return ispitService.getIspitBySifraIspita(id);
+	public List<Ispit> getTerminiBySifraPredmeta(@RequestParam(value = "sifraPredmeta") String sifraPredmeta) {
+
+		return ispitService.getTerminiPoSifriPredmeta(sifraPredmeta);
+		
 	}
+	
 
 	// DELETE
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)

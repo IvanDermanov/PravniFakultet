@@ -9,6 +9,7 @@ import java.io.Serializable;
 //		password VARCHAR (20),
 //		PRIMARY KEY (jmbg)
 //	);
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

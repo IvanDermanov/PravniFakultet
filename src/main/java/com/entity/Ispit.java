@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /*
@@ -11,57 +13,38 @@ import javax.persistence.Id;
  * termine u kojima se može polagati taj predmet
  */
 
-//CREATE TABLE ispit(
-//		id BIGINT NOT NULL,
-//		student VARCHAR(10),
-//		predmet VARCHAR(10),
-//		termin BIGINT,
-//		nastavnik VARCHAR(13),
-//		ocena INT,
-//		PRIMARY KEY (id),
-//		FOREIGN KEY (student) REFERENCES student(id),
-//		FOREIGN KEY (predmet) REFERENCES predmet(oznaka),
-//		FOREIGN KEY (termin) REFERENCES termin(id),
-//		FOREIGN KEY (nastavnik) REFERENCES nastavnik(jmbg)
-//	);
+
+/**
+ * 
+ * Ispit tabela mapira koji profesor drzi ispit iz kog predmeta u koje vreme
+ * vise profesora moze drzati jedan predmet i jedan predmet moze drzati vise
+ * profesora
+ */
 @Entity
-public class Ispit implements Serializable{
+public class Ispit implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	private int id;
-	private String student;
-	private String predmet;
-	private int termin;
-	private String nastavnik;
-	private int ocena;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	long id;
+	private String predmet; // sifra predmeta
+	private String nastavnik; // jmbg nastavnika
+	private String datum;
+	private String vreme;
+
+	public Ispit(String predmet, String nastavnik, String datum, String vreme) {
+		super();
+		this.predmet = predmet;
+		this.nastavnik = nastavnik;
+		this.datum = datum;
+		this.vreme = vreme;
+	}
 
 	public Ispit() {
-		
-	}
-	public Ispit(int id, String student, String predmet, int termin, String nastavnik, int ocena) {
-		super();
-		this.id = id;
-		this.student = student;
-		this.predmet = predmet;
-		this.termin = termin;
-		this.nastavnik = nastavnik;
-		this.ocena = ocena;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getStudent() {
-		return student;
-	}
-
-	public void setStudent(String student) {
-		this.student = student;
-	}
 
 	public String getPredmet() {
 		return predmet;
@@ -69,14 +52,6 @@ public class Ispit implements Serializable{
 
 	public void setPredmet(String predmet) {
 		this.predmet = predmet;
-	}
-
-	public int getTermin() {
-		return termin;
-	}
-
-	public void setTermin(int termin) {
-		this.termin = termin;
 	}
 
 	public String getNastavnik() {
@@ -87,12 +62,20 @@ public class Ispit implements Serializable{
 		this.nastavnik = nastavnik;
 	}
 
-	public int getOcena() {
-		return ocena;
+	public String getDatum() {
+		return datum;
 	}
 
-	public void setOcena(int ocena) {
-		this.ocena = ocena;
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
+
+	public String getVreme() {
+		return vreme;
+	}
+
+	public void setVreme(String vreme) {
+		this.vreme = vreme;
 	}
 
 }

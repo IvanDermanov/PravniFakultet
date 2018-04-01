@@ -15,7 +15,7 @@ import com.entity.Student;
 import com.service.StudentService;
 
 @RestController
-@RequestMapping("/student/hello")
+@RequestMapping("/student/student")
 public class StudentController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class StudentController {
     public Collection<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
-//READ By http://localhost:8080/student/hello/?id=125/2018 
+//READ By http://localhost:8080/student/student/?id=125/2018 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Optional<Student> getStudentById(@RequestParam(value = "id") String id){
         return studentService.getStudentById(id);

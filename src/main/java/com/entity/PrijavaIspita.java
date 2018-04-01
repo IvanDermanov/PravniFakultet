@@ -3,11 +3,10 @@ package com.entity;
 import java.io.Serializable;
 
 //CREATE TABLE prijava_ispita(
-//	    id BIGINT NOT NULL,
+//		id SERIAL,
 //		student VARCHAR(10),
-//	    predmet VARCHAR(10),
-//	    termin BIGINT,
-//		nastavnik VARCHAR(13),
+//		predmet VARCHAR(10),
+//		termin INT,
 //		ocena INT,
 //		PRIMARY KEY (id),
 //		FOREIGN KEY (student) REFERENCES student(id),
@@ -15,7 +14,10 @@ import java.io.Serializable;
 //		FOREIGN KEY (nastavnik) REFERENCES nastavnik(jmbg),
 //		FOREIGN KEY (termin) REFERENCES termin(id)
 //	);
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /*
@@ -27,34 +29,35 @@ import javax.persistence.Id;
  * ocenu koju je dobio
  */
 @Entity
-public class PrijavaIspita implements Serializable{
+public class PrijavaIspita implements Serializable {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id;
 	private String student;
-	private String predmet;
 	// termin polaganja koji je student odabrao
-	private int terminPolaganja;
-	private String nastavnik;
-	private int ocena;
-
+	private String danPolaganja;
+	private String vremePolaganja;
+	private String jmbgProfesora;
+	private String sifraPredmeta;
 	
+	
+
 	public PrijavaIspita() {
 		// default constructor
 	}
 
 
-	
 
-	public PrijavaIspita(int id, String student, String predmet, int terminPolaganja, String nastavnik, int ocena) {
+	public PrijavaIspita(int id, String student, String danPolaganja, String vremePolaganja, String jmbgProfesora,
+			String sifraPredmeta) {
 		super();
 		this.id = id;
 		this.student = student;
-		this.predmet = predmet;
-		this.terminPolaganja = terminPolaganja;
-		this.nastavnik = nastavnik;
-		this.ocena = ocena;
+		this.danPolaganja = danPolaganja;
+		this.vremePolaganja = vremePolaganja;
+		this.jmbgProfesora = jmbgProfesora;
+		this.sifraPredmeta = sifraPredmeta;
 	}
-
 
 
 
@@ -64,11 +67,9 @@ public class PrijavaIspita implements Serializable{
 
 
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 
 
@@ -78,71 +79,59 @@ public class PrijavaIspita implements Serializable{
 
 
 
-
 	public void setStudent(String student) {
 		this.student = student;
 	}
 
 
 
-
-	public String getPredmet() {
-		return predmet;
+	public String getDanPolaganja() {
+		return danPolaganja;
 	}
 
 
 
-
-	public void setPredmet(String predmet) {
-		this.predmet = predmet;
+	public void setDanPolaganja(String danPolaganja) {
+		this.danPolaganja = danPolaganja;
 	}
 
 
 
-
-	public int getTerminPolaganja() {
-		return terminPolaganja;
+	public String getVremePolaganja() {
+		return vremePolaganja;
 	}
 
 
 
-
-	public void setTerminPolaganja(int terminPolaganja) {
-		this.terminPolaganja = terminPolaganja;
+	public void setVremePolaganja(String vremePolaganja) {
+		this.vremePolaganja = vremePolaganja;
 	}
 
 
 
-
-	public String getNastavnik() {
-		return nastavnik;
+	public String getJmbgProfesora() {
+		return jmbgProfesora;
 	}
 
 
 
-
-	public void setNastavnik(String nastavnik) {
-		this.nastavnik = nastavnik;
+	public void setJmbgProfesora(String jmbgProfesora) {
+		this.jmbgProfesora = jmbgProfesora;
 	}
 
 
 
-
-	public int getOcena() {
-		return ocena;
+	public String getSifraPredmeta() {
+		return sifraPredmeta;
 	}
 
 
 
-
-	public void setOcena(int ocena) {
-		this.ocena = ocena;
+	public void setSifraPredmeta(String sifraPredmeta) {
+		this.sifraPredmeta = sifraPredmeta;
 	}
 
 
-
-
-	
 	
 
 }
