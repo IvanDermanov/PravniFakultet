@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,15 @@ public class PrijavaIspitaController {
 		return prijavaIspitaService.getSvePrijaveIspita();
 	}
 
-	// READ By http://localhost:8080/student/hello/?id=125/2018
+	// READ By http://localhost:8080/student/prijava_ispita/?id=1
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Optional<PrijavaIspita> getPrijavaIspitaById(@RequestParam(value = "id") int id) {
 		return prijavaIspitaService.getPrijavaIspitaById(id);
+	}
+	// READ By http://localhost:8080/student/prijava_ispita/studenta/?sid=12\2017
+	@RequestMapping(value = "/studenta/", method = RequestMethod.GET)
+	public List<PrijavaIspita> svePrijaveStudenta(@RequestParam(value = "sid") String student) {
+		return prijavaIspitaService.prijaveIspitaStudenta(student);
 	}
 
 	// DELETE
@@ -47,6 +54,8 @@ public class PrijavaIspitaController {
 	// ADD NEW
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertprijavaIspita(@RequestBody PrijavaIspita prijavaIspita) {
+		prijavaIspitaService.ukolniPrethodnuPrijavuAkoPostoji(prijavaIspita); 
 		prijavaIspitaService.insertPrijavaIspita(prijavaIspita);
+		
 	}
 }

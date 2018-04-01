@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /*
  * Entitet PrijavaIspita treba da sadrži 
@@ -30,6 +31,10 @@ import javax.persistence.Id;
  */
 @Entity
 public class PrijavaIspita implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id;
@@ -130,8 +135,5 @@ public class PrijavaIspita implements Serializable {
 	public void setSifraPredmeta(String sifraPredmeta) {
 		this.sifraPredmeta = sifraPredmeta;
 	}
-
-
-	
 
 }
