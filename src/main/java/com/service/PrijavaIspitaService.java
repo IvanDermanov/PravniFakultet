@@ -38,7 +38,7 @@ public class PrijavaIspitaService {
 	}
 
 	public List<PrijavaIspita> prijaveIspitaStudenta(String student) {
-		List<PrijavaIspita> prijave = new ArrayList<>();
+		List<PrijavaIspita> prijave = new ArrayList<>();	
 		for (PrijavaIspita pispita : prijavaIspitaRepository.findByStudent(student)) {
 			prijave.add(pispita);
 		}

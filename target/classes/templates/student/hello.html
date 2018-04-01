@@ -9,6 +9,10 @@
 	<h1 th:inline="text">Prijava ispita za studenta:</h1>
 	<h2 id="student"></h2>
 	<br>
+	<small>Spisak prijavljenih ispita</small>
+	<hr/>
+	<p id="ispiti"> </p>
+	<hr/>
 	<p>
 	<form th:action="@{/logout}" method="get">
 		<input type="submit" value="Odjava" />
@@ -73,6 +77,9 @@
 			"application/x-www-form-urlencoded");
 	xmlhttp1.send("x=" + dbParam1);
 	
+	//PRIKAZ PRIJAVLJENIH ISPITA
+	spisak_prijavljenih_ispita();
+	
 	//SELEKTOR TERMINA
 	function change_predmet_select(sel) {		
 		var obj2, dbParam2, xmlhttp2, myObj2, x2, txt2 = "";
@@ -120,6 +127,7 @@
 
 	function change_termin_select(sel) {
 		var prijava_ispita = sel.split('|');
+
 		get_profesor(prijava_ispita[0]);
 		var prijava = { 
 				jmbgProfesora: prijava_ispita[0],
@@ -127,10 +135,14 @@
 	            vremePolaganja: prijava_ispita[2],
 	            sifraPredmeta: prijava_ispita[3],
 	            student: prijava_ispita[4]
-	        }; 
+	        };
 		var jsonText = JSON.stringify(prijava);
 		document.getElementById("myDIVButton").value = jsonText;
-		pokaziButton();
+		if (termin_select.selectedIndex>0){
+			pokaziButton();
+		}else{
+			sakrijButton();
+		}
 	}
 
 	function get_profesor(jmbg) {
@@ -163,6 +175,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				alert("Uspešno ste prijavili ispit");
 				sakrijButton();
+				spisak_prijavljenih_ispita();
 			}
 
 		};
@@ -180,6 +193,44 @@
 	    var x = document.getElementById("myDIVButton");
 	    x.style.display = "none";
 	}
+	
+//PRIJAVLJENI ISPITI
+	function spisak_prijavljenih_ispita() {		
+		var obj4, dbParam4, xmlhttp4, myObj4, x4, txt4 = "";
+		
+		xmlhttp4 = new XMLHttpRequest();
+
+		xmlhttp4.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				
+				myObj4 = JSON.parse(this.responseText);
+				if (myObj4.length > 0) {
+					
+				txt4="<table width=30% border=1><thead><tr><td>Ispit</td><td>Datum</td><td>Vreme</td></tr></thead>";
+				for (x4 in myObj4) {
+					txt4 += "<tr>";
+					txt4 += "<td>"+ myObj4[x4].sifraPredmeta
+							+ "</td><td>"
+							+ myObj4[x4].danPolaganja
+							+ "</td><td>"
+							+ myObj4[x4].vremePolaganja
+							+ "</td>";
+							
+					txt4 += "</tr>";
+				}	
+				txt4 += "</table>";
+					document.getElementById("ispiti").innerHTML = txt4;
+
+				}
+			}
+		};
+		xmlhttp4
+				.open("GET",
+						"http://localhost:8080/student/prijava_ispita/studenta/?sid=[[${#httpServletRequest.remoteUser}]]", true);
+		xmlhttp4.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		xmlhttp4.send(dbParam4);
+	};
 		
 	</script>
 

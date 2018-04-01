@@ -30,6 +30,10 @@ import javax.persistence.Id;
  */
 @Entity
 public class Student implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
 	private String ime;
@@ -41,6 +45,8 @@ public class Student implements Serializable{
 	private String datumRodjenja;
 	private String password;
 	private int semestar;
+	// Ovo je bolje resenje i koristiti one-to-many relaciju
+	//private List <Ispit> prijave_ispita; 
 
 	public Student(String id, String ime, String prezime, String studijskiProgram, Integer brojUpisa,
 			Integer godinaUpisaFakulteta, String jmbg, String datumRodjenja, String password, Integer semestar) {

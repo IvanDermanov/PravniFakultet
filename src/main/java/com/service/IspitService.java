@@ -37,7 +37,7 @@ public class IspitService {
 		List<Ispit> termini= new ArrayList<>();
 		for(Ispit isp: ispitRepository.findByPredmet(sifraPredmeta)){
 			termini.add(isp);
-		}
+		}		
 		return termini;
 	}
 

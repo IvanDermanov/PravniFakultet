@@ -19,6 +19,10 @@ import javax.persistence.Id;
  */
 @Entity
 public class Nastavnik implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ime;
 	private String prezime;
 	@Id
